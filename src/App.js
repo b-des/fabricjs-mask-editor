@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import Side from "./side";
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App(props){
+    const [sides, setSides] = useState(props.sides);
+    const onAddSide = () => {
+
+        setSides(oldArray => [...oldArray, null]);
+    }
+
+    return (
+         sides.map(side => {
+            return <Side onSave={props.onSave} data={side.data} image={side.image} onAddSide={onAddSide}/>;
+        })
+
+    )
 }
-
-export default App;
